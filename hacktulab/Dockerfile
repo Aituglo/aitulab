@@ -31,7 +31,7 @@ ENV LC_CTYPE en_US.UTF-8
 RUN apt-get install -y vim curl nano tmux silversearcher-ag apt-file git zsh ncdu
 
 # Dependencies
-RUN apt-get install -y zenity mingw32 xterm gnome-terminal default-jre default-jdk aapt dex2jar zlib1g-dev libmagickwand-dev imagemagick zipalign cowpatty bully lighttpd macchanger php-cgi isc-dhcp-server python3-dev python3-setuptools python-pip python3-pip libssl-dev xprobe2 golang-go whatweb sslyze sslscan wafw00f dnsenum && \
+RUN apt-get install -y openvpn zenity mingw32 xterm gnome-terminal default-jre default-jdk aapt dex2jar zlib1g-dev libmagickwand-dev imagemagick zipalign cowpatty bully lighttpd macchanger php-cgi isc-dhcp-server python3-dev python3-setuptools python-pip python3-pip libssl-dev xprobe2 golang-go whatweb sslyze sslscan wafw00f dnsenum && \
     apt-get install -y wine && \
     git clone --depth=1 https://github.com/noxxi/p5-io-socket-ssl && cd p5-io-socket-ssl && perl Makefile.PL && make && make install && rm -r /p5-io-socket-ssl
 

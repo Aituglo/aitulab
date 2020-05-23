@@ -1,0 +1,108 @@
+#!/bin/bash
+
+function usage {
+  echo
+  echo "Welcome to Aitulab !"
+  echo
+  echo "SERVER: $0 server (start | stop)"
+  echo "NGROK: $0 ngrok (start | stop)"
+  echo "HACKING: $0 hacking"
+  echo "SERVER: $0 nessus (start | stop)"
+  echo "TOR BROWSER: $0 tor_browser"
+  echo "FIREFOX: $0 firefox"
+  echo "LIBRE OFFICE: $0 libreoffice"
+  echo "BURPSUIT: $0 burp"
+}
+
+
+set -e
+
+if [[ -z "$1" || "$1" == "-h" ]]
+then
+  usage
+  exit 1
+elif [[ "$1" == "clear" && -z "$2" ]]
+then
+  echo "Clearing everything..."
+  exit 0
+elif [[ "$1" == "hacking" && -z "$2" ]]
+then
+  docker run --rm --user $(id -u):$(id -g) -v "${PWD}:/home/user/data" --net=host --privileged -it hacktulab zsh
+  exit 0
+elif [[ "$1" == "server" && "$2" == "start" ]]
+then
+  docker run --rm -d -p 80:80 -p 443:443 --name server -v "${PWD}:/srv/data" rflathers/nginxserve
+  exit 0
+elif [[ "$1" == "server" && "$2" == "stop" ]]
+then
+  docker stop server
+  exit 0
+elif [[ "$1" == "ngrok" && "$2" == "start" ]]
+then
+  docker run --rm -d -p 80:80 -p 443:443 --name server -v "${PWD}:/srv/data" rflathers/nginxserve
+  docker run --rm -it --link server --name ngrok wernight/ngrok ngrok http server:80
+  exit 0
+elif [[ "$1" == "ngrok" && "$2" == "stop" ]]
+then
+  docker stop server
+  exit 0
+elif [[ "$1" == "cyberchef" && "$2" == "start" ]]
+then
+  docker run --rm --name cyberchef -d -p 8000:8000 mpepping/cyberchef
+  exit 0
+elif [[ "$1" == "cyberchef" && "$2" == "stop" ]]
+then
+  docker stop cyberchef
+  exit 0
+elif [[ "$1" == "nessus" && "$2" == "start" ]]
+then
+  docker run --rm -d --name nessus -p 8834:8834 infoslack/nessus
+  exit 0
+elif [[ "$1" == "nessus" && "$2" == "stop" ]]
+then
+  docker stop nessus
+  exit 0
+elif [[ "$1" == "tor_browser" && && -z "$2" ]]
+then
+  docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY -v /dev/snd:/dev/snd --privileged --name tor-browser jess/tor-browser
+  exit 0
+elif [[ "$1" == "firefox" && && -z "$2" ]]
+then
+  docker run -d --name firefox -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix kennethkl/firefox
+  exit 0
+elif [[ "$1" == "libreoffice" && && -z "$2" ]]
+then
+  docker run -v $HOME/Documents:/home/libreoffice/Documents:rw -v /tmp/.X11-unix:/tmp/.X11-unix -e uid=$(id -u) -e gid=$(id -g) -e DISPLAY=unix$DISPLAY --name libreoffice chrisdaish/libreoffice
+  exit 0
+elif [[ "$1" == "burp" && && -z "$2" ]]
+then
+  docker run -d --name burpsuite -e DISPLAY -v ${HOME}:/home/burpsuite -v /tmp/.X11-unix/:/tmp/.X11-unix/ -p 8080:8080 alexandreoda/burpsuite
+  exit 0
+elif [[ "$1" == "spotify" && && -z "$2" ]]
+then
+  docker run -it --rm -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY -v /dev/snd:/dev/snd --privileged --name spotify jess/spotify
+  exit 0
+elif [[ "$1" == "vscode" && "$2" == "start" ]]
+then
+  docker run -d -it -p 1774:8080 --name vscode -v "$PWD:/home/coder/project" -u "$(id -u):$(id -g)" -e PASSWORD='password' codercom/code-server:latest
+  echo "Connect to vscode with http://localhost:1774"
+  exit 0
+elif [[ "$1" == "vscode" && "$2" == "stop" ]]
+then
+  docker stop vscode
+  exit 0
+elif [[ "$1" == "wireshark" && "$2" == "start" ]]
+then
+  docker run -it -d --rm --name=wireshark --net=host --cap-add=NET_ADMIN -e PUID=1000 -e PGID=1000 -e TZ=Europe/London -p 1775:3000 -v /path/to/config:/config linuxserver/wireshark
+  echo "Connect to wireshark with http://localhost:1775"
+  exit 0
+elif [[ "$1" == "wireshark" && "$2" == "stop" ]]
+then
+  docker stop wireshark
+  exit 0
+else
+  usage
+  exit 1
+fi
+
+dock

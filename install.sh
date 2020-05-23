@@ -26,9 +26,9 @@ docker build -t hacktulab --build-arg GROUP_ID=$(id -g) --build-arg USER_ID=$(id
 
 echo "Moving aitulab script to /usr/bin"
 
-sudo chmod +x aitulab
-sudo mv aitulab /usr/bin/
+sudo chmod +x lab
+sudo mv lab /usr/bin/
 
-echo "Install finish, to run it please type aitulab"
+echo "Install finish, to run it please type lab"
 
 
