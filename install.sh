@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 1>&2
-   exit 1
-fi
-
 echo "Checking for Docker installation"
 
 docker -v
@@ -27,7 +22,7 @@ cd aitulab
 
 echo "Building hacktulab docker"
 
-sudo docker build -t hacktulab --build-arg GROUP_ID=$(id -g) --build-arg USER_ID=$(id -u) ./hacktulab
+docker build -t hacktulab --build-arg GROUP_ID=$(id -g) --build-arg USER_ID=$(id -u) ./hacktulab
 
 echo "Moving aitulab script to /usr/bin"
 

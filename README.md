@@ -7,5 +7,5 @@ Quick Start
 ---
 
 ```
-    sh -c "$(curl -fsSL https://raw.github.com/aituglo/aitulab/master/install.sh)"
+    bash -c "$(curl -fsSL https://raw.github.com/aituglo/aitulab/master/install.sh)"
 ```
