@@ -42,8 +42,8 @@ RUN apt-get install -y figlet && \
 
 # Add files
 ADD .cheat/ /home/hacking/.cheat/
+ADD .config/ /home/hacking/.config/
 ADD wordlists /usr/share/
-ADD bin/* /usr/local/bin/
 
 # Add tools
 ADD tools/* /opt/tools/
@@ -150,6 +150,16 @@ RUN git clone --depth=1 https://github.com/tiagorlampert/sAINT /opt/sAINT
 
 # FindMyHash
 RUN git clone --depth=1 https://github.com/frdmn/findmyhash /opt/findmyhash
+
+# Adding Cheat
+
+RUN curl -s https://api.github.com/repos/cheat/cheat/releases/latest \
+    | grep "cheat-linux-amd64.*gz" \
+    | cut -d '"' -f 4 \
+    | wget -qi -
+RUN gzip -d cheat-linux-amd64.gz && \
+    mv cheat-linux-amd64 /usr/bin/cheat && \
+    chmod +x /usr/bin/cheat
 
 
 #########

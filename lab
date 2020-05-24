@@ -9,14 +9,11 @@ function usage {
   echo
   echo "Welcome to Aitulab !"
   echo
-  if version_gt $VERSION $CURRENT_VERSION; then
-     echo "An update is available ! Please start lab update"
-  fi
-  echo
   echo "SERVER: $0 server (start | stop)"
   echo "NGROK: $0 ngrok (start | stop)"
   echo "HACKING: $0 hacking"
   echo "SERVER: $0 nessus (start | stop)"
+  echo "VSCODE: $0 vscode (start | stop)"
   echo "TOR BROWSER: $0 tor_browser"
   echo "FIREFOX: $0 firefox"
   echo "LIBRE OFFICE: $0 libreoffice"
