@@ -17,8 +17,9 @@ fi
 
 echo "Cloning repository"
 
-git clone https://github.com/aituglo/aitulab aitulab
-cd aitulab
+git clone https://github.com/aituglo/aitulab /opt/aitulab
+sudo chown -R $USER:$USER /opt/aitulab
+cd /opt/aitulab
 
 echo "Building hacktulab docker"
 
@@ -28,6 +29,7 @@ echo "Moving aitulab script to /usr/bin"
 
 sudo chmod +x lab
 sudo mv lab /usr/bin/
+sudo chown $USER:$USER /usr/bin/lab
 
 echo "Install finish, to run it please type lab"
 

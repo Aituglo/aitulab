@@ -1,8 +1,17 @@
 #!/bin/bash
 
+CURRENT_VERSION="$(cat ./version)"
+VERSION=$(echo "$(curl -fsSL https://raw.githubusercontent.com/aituglo/aitulab/master/version)")
+
+function version_gt() { test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1"; }
+
 function usage {
   echo
   echo "Welcome to Aitulab !"
+  echo
+  if version_gt $VERSION $CURRENT_VERSION; then
+     echo "An update is available ! Please start lab update"
+  fi
   echo
   echo "SERVER: $0 server (start | stop)"
   echo "NGROK: $0 ngrok (start | stop)"
@@ -16,26 +25,32 @@ function usage {
 
 set -e
 
-CURRENT_VERSION = "$(cat ./version)"
-VERSION = '$(cat "$(curl -fsSL https://raw.githubusercontent.com/aituglo/aitulab/master/version)")'
-
-function version_gt() { test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1"; }
-
 if version_gt $VERSION $CURRENT_VERSION; then
-     echo "An update is available !"
+  echo "An update is available ! Please start lab update"
 fi
 
 if [[ -z "$1" || "$1" == "-h" ]]
 then
   usage
   exit 1
+elif [[ "$1" == "update" && -z "$2" ]]
+then
+  if version_gt $VERSION $CURRENT_VERSION; then
+    echo "Launching update !"
+    cd /opt/aitulab && git pull
+    bash -c /opt/aitulab/update.sh
+    exit 0
+  else
+    echo "There is no update for the moment !"
+    exit 1
+  fi
 elif [[ "$1" == "clear" && -z "$2" ]]
 then
   echo "Clearing everything..."
   exit 0
 elif [[ "$1" == "hacking" && -z "$2" ]]
 then
-  docker run --rm --user $(id -u):$(id -g) -v "${PWD}:/home/user/data" --net=host --privileged -it hacktulab zsh
+  docker run --rm --user $(id -u):$(id -g) -v "${PWD}:/home/hacking/data" --net=host --privileged -it hacktulab zsh
   exit 0
 elif [[ "$1" == "server" && "$2" == "start" ]]
 then
