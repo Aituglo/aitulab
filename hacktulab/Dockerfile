@@ -36,17 +36,16 @@ RUN apt-get install -y openvpn zenity mingw32 xterm gnome-terminal default-jre d
     git clone --depth=1 https://github.com/noxxi/p5-io-socket-ssl && cd p5-io-socket-ssl && perl Makefile.PL && make && make install && rm -r /p5-io-socket-ssl
 
 # MOTD
-RUN echo -e "\e[0;31m" > /etc/motd && \                                                                                                                                                    
+RUN echo "\e[0;31m" > /etc/motd && \                                                                                                                                                    
     echo "      .d888888  dP d888888P dP     dP dP         .d888888   888888ba  " >> /etc/motd && \
     echo "     d8'    88  88    88    88     88 88        d8'    88   88    '8b " >> /etc/motd && \
     echo "     88aaaaa88  88    88    88     88 88        88aaaaa88   88aaaa8P' " >> /etc/motd && \
     echo "     88     88  88    88    88     88 88        88     88   88   '8b. " >> /etc/motd && \
     echo "     88     88  88    88    Y8.   .8P 88        88     88   88    .88 " >> /etc/motd && \
     echo "     88     88  dP    dP    'Y88888P' 88888888P 88     88   88888888P " >> /etc/motd && \
-    echo -e "\e[0;34m">> /etc/motd && \
-    echo -e "\e[4m">> /etc/motd && \
+    echo "\e[0;34m">> /etc/motd && \
     echo '\n' >> /etc/motd && \
-    echo "                   https://github.com/aituglo/aitulab">> /etc/motd && \
+    echo "                   \e[4mhttps://github.com/aituglo/aitulab">> /etc/motd && \
     echo '\n' >> /etc/motd
 
 # Add files

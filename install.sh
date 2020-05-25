@@ -29,7 +29,6 @@ echo "     88     88  88    88    88     88 88        88     88   88   '8b. "
 echo "     88     88  88    88    Y8.   .8P 88        88     88   88    .88 " 
 echo "     88     88  dP    dP    'Y88888P' 88888888P 88     88   88888888P " 
 echo -e "$COLOR_BLUE"
-echo -e "$UNDERLINED"
 echo
 echo "                   https://github.com/aituglo/aitulab"
 echo

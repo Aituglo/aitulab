@@ -36,48 +36,47 @@ function usage {
   echo "     88     88  88    88    Y8.   .8P 88        88     88   88    .88 " 
   echo "     88     88  dP    dP    'Y88888P' 88888888P 88     88   88888888P " 
   echo -e "$COLOR_BLUE"
-  echo -e "$UNDERLINED"
   echo
-  echo "                   https://github.com/aituglo/aitulab"
+  echo -e "                   ${UNDERLINED}https://github.com/aituglo/aitulab"
   echo
   echo -e "$COLOR_GREEN $BOLD $UNDERLINED"
   echo
   echo "AITULAB"
   echo
   echo -e "$COLOR_NC"
-  echo -e "$BOLD $UNDERLINED Update: $COLOR_NC $0 update"
+  echo -e "${BOLD}${UNDERLINED}Update:$COLOR_NC $0 update"
   echo
   echo -e "$COLOR_GREEN $BOLD $UNDERLINED"
   echo
   echo "HACKING"
   echo
   echo -e "$COLOR_NC"
-  echo -e "$BOLD $UNDERLINED Lab: $COLOR_NC $0 hacking"
-  echo -e "$BOLD $UNDERLINED Nessus: $COLOR_NC $0 nessus (start | stop)"
-  echo -e "$BOLD $UNDERLINED Burpsuit: $COLOR_NC $0 burp"
-  echo -e "$BOLD $UNDERLINED Wireshark: $COLOR_NC $0 wireshark (start | stop)"
+  echo -e "${BOLD}${UNDERLINED}Lab:$COLOR_NC $0 hacking"
+  echo -e "${BOLD}${UNDERLINED}Nessus:$COLOR_NC $0 nessus (start | stop)"
+  echo -e "${BOLD}${UNDERLINED}Burpsuit:$COLOR_NC $0 burp"
+  echo -e "${BOLD}${UNDERLINED}Wireshark:$COLOR_NC $0 wireshark (start | stop)"
   echo -e "$COLOR_GREEN $BOLD $UNDERLINED"
   echo
   echo "MISC"
   echo
   echo -e "$COLOR_NC"
-  echo -e "$BOLD $UNDERLINED Server: $COLOR_NC $0 server (start | stop)"
-  echo -e "$BOLD $UNDERLINED Ngrok: $COLOR_NC $0 ngrok (start | stop)"
+  echo -e "${BOLD}${UNDERLINED}Server:$COLOR_NC $0 server (start | stop)"
+  echo -e "${BOLD}${UNDERLINED}Ngrok:$COLOR_NC $0 ngrok (start | stop)"
   echo -e "$COLOR_GREEN $BOLD $UNDERLINED"
   echo
   echo "DEV"
   echo
   echo -e "$COLOR_NC"
-  echo -e "$BOLD $UNDERLINED Vscode: $COLOR_NC $0 vscode (start | stop)"
+  echo -e "${BOLD}${UNDERLINED}Vscode:$COLOR_NC $0 vscode (start | stop)"
   echo -e "$COLOR_GREEN $BOLD $UNDERLINED"
   echo
   echo "GUI"
   echo
   echo -e "$COLOR_NC"
-  echo -e "$BOLD $UNDERLINED Tor Browser: $COLOR_NC $0 tor_browser"
-  echo -e "$BOLD $UNDERLINED Firefox: $COLOR_NC $0 firefox"
-  echo -e "$BOLD $UNDERLINED Spotify: $COLOR_NC $0 spotify"
-  echo -e "$BOLD $UNDERLINED Libre Office: $COLOR_NC $0 libreoffice"
+  echo -e "${BOLD}${UNDERLINED}Tor Browser:$COLOR_NC $0 tor_browser"
+  echo -e "${BOLD}${UNDERLINED}Firefox:$COLOR_NC $0 firefox"
+  echo -e "${BOLD}${UNDERLINED}Spotify:$COLOR_NC $0 spotify"
+  echo -e "${BOLD}${UNDERLINED}Libre Office:$COLOR_NC $0 libreoffice"
   
 }
 
