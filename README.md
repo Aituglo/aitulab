@@ -1,7 +1,9 @@
 Aitulab
 =======
 
-![Aitulab](./github/presentation.png)
+<p align="center">
+  <img src="./github/presentation.png">
+</p>
 
 This is my own dev/hacking lab.
 
