@@ -30,7 +30,7 @@ echo "     88     88  88    88    Y8.   .8P 88        88     88   88    .88 "
 echo "     88     88  dP    dP    'Y88888P' 88888888P 88     88   88888888P " 
 echo -e "$COLOR_BLUE"
 echo
-echo "                   https://github.com/aituglo/aitulab"
+echo "                   https://github.com/aituglo/labyx"
 echo
 
 echo -e "$COLOR_BLUE"
@@ -54,9 +54,9 @@ echo -e "$COLOR_BLUE"
 echo "Cloning repository"
 echo -e "$COLOR_NC"
 
-git clone https://github.com/aituglo/aitulab /opt/aitulab
-sudo chown -R $USER:$USER /opt/aitulab
-cd /opt/aitulab
+git clone https://github.com/aituglo/labyx /opt/labyx
+sudo chown -R $USER:$USER /opt/labyx
+cd /opt/labyx
 
 echo -e "$COLOR_BLUE"
 echo "Building hacktulab docker"
@@ -65,7 +65,7 @@ echo -e "$COLOR_NC"
 docker build -t hacktulab --build-arg GROUP_ID=$(id -g) --build-arg USER_ID=$(id -u) ./hacktulab
 
 echo -e "$COLOR_BLUE"
-echo "Moving aitulab script to /usr/bin"
+echo "Moving labyx script to /usr/bin"
 echo -e "$COLOR_NC"
 
 sudo chmod +x lab

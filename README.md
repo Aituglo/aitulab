@@ -1,4 +1,4 @@
-Aitulab
+Labyx
 =======
 
 <p align="center">
@@ -11,5 +11,5 @@ Quick Start
 ---
 
 ```
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Aituglo/aitulab/master/install.sh)"
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Aituglo/labyx/master/install.sh)"
 ```

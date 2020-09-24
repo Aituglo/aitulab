@@ -31,7 +31,7 @@ echo -e "$COLOR_NC"
 
 # Lab update script
 echo -e "$COLOR_BLUE"
-echo "Upgrading aitulab"
+echo "Upgrading labyx"
 echo -e "$COLOR_NC"
 ## Upgrade the hacktulab image
 

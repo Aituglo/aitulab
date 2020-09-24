@@ -20,8 +20,8 @@ COLOR_LIGHT_GRAY='\e[0;37m'
 BOLD='\e[1m'
 UNDERLINED='\e[4m'
 
-CURRENT_VERSION="$(cat /opt/aitulab/version)"
-VERSION=$(echo "$(curl -fsSL https://raw.githubusercontent.com/aituglo/aitulab/master/version)")
+CURRENT_VERSION="$(cat /opt/labyx/version)"
+VERSION=$(echo "$(curl -fsSL https://raw.githubusercontent.com/aituglo/labyx/master/version)")
 
 function version_gt() { test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1"; }
                                                                                                                                                                                                                                                                                                                                                                                                                                           
@@ -37,11 +37,11 @@ function usage {
   echo "     88     88  dP    dP    'Y88888P' 88888888P 88     88   88888888P " 
   echo -e "$COLOR_BLUE"
   echo
-  echo -e "                   ${UNDERLINED}https://github.com/aituglo/aitulab"
+  echo -e "                   ${UNDERLINED}https://github.com/aituglo/labyx"
   echo
   echo -e "$COLOR_GREEN $BOLD $UNDERLINED"
   echo
-  echo "AITULAB"
+  echo "LABYX"
   echo
   echo -e "$COLOR_NC"
   echo -e "${BOLD}${UNDERLINED}Update:$COLOR_NC $0 update"
@@ -96,8 +96,8 @@ then
     echo -e "$COLOR_BLUE"
     echo "Launching update !"
     echo -e "$COLOR_NC"
-    cd /opt/aitulab && git pull
-    bash -c /opt/aitulab/update.sh
+    cd /opt/labyx && git pull
+    bash -c /opt/labyx/update.sh
     exit 0
   else
     echo -e "$COLOR_BLUE"
