@@ -97,12 +97,6 @@ RUN pip3 install pwntools
 RUN apt-get install -y metasploit-framework websploit && \
     git clone --depth=1 https://github.com/Manisso/fsociety /opt/fsociety
 
-# MITM / ARP poisoning / Spoofing / Sniffing
-RUN apt-get update
-RUN apt-get install -y  python-impacket mitmproxy dsniff mitmf tcpdump ngrep
-RUN git clone --depth=1 https://github.com/r00t-3xp10it/morpheus /opt/morpheus && \
-    git clone --depth=1 https://github.com/evilsocket/bettercap /opt/bettercap 
-
 # Crack password
 # RUN git clone --depth=1 https://github.com/berzerk0/Probable-Wordlists /opt/Probable-Wordlists
 RUN apt-get install -y hydra john 
@@ -151,7 +145,7 @@ RUN git clone --depth=1 https://github.com/n00py/WPForce /opt/WPForce && \
     git clone --depth=1 https://github.com/m4ll0k/WPSeku /opt/WPSeku
 
 # Paquet manipulation
-RUN apt-get install -y hping3 scapy
+RUN apt-get install -y hping3
 
 # Keylogger
 RUN git clone --depth=1 https://github.com/tiagorlampert/sAINT /opt/sAINT
@@ -159,8 +153,212 @@ RUN git clone --depth=1 https://github.com/tiagorlampert/sAINT /opt/sAINT
 # FindMyHash
 RUN git clone --depth=1 https://github.com/frdmn/findmyhash /opt/findmyhash
 
-# Adding Cheat
+RUN mkdir /home/hacking/toolkit
 
+# Sublist3r
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/aboul3la/Sublist3r.git && \
+    cd Sublist3r/ && \
+    pip3 install -r requirements.txt && \
+    ln -s /home/hacking/toolkit/Sublist3r/sublist3r.py /usr/local/bin/sublist3r
+
+# seclists
+RUN mkdir /home/hacking/wordlists && \
+    cd /home/hacking/wordlists && \
+    git clone --depth 1 https://github.com/danielmiessler/SecLists.git 
+
+# knock
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/guelfoweb/knock.git && \
+    cd knock && \
+    chmod +x setup.py && \
+    python setup.py install
+
+# massdns
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/blechschmidt/massdns.git && \
+    cd massdns/ && \
+    make && \
+    ln -sf /home/hacking/toolkit/massdns/bin/massdns /usr/local/bin/massdns
+
+# wafw00f
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/enablesecurity/wafw00f.git && \
+    cd wafw00f && \
+    chmod +x setup.py && \
+    python setup.py install
+
+# wpscan
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/wpscanteam/wpscan.git && \
+    cd wpscan/ && \
+    gem install bundler && bundle install --without test && \
+    gem install wpscan
+
+# commix 
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/commixproject/commix.git && \
+    cd commix && \
+    chmod +x commix.py && \
+    ln -sf /home/hacking/toolkit/commix/commix.py /usr/local/bin/commix
+
+# masscan
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/robertdavidgraham/masscan.git && \
+    cd masscan && \
+    make && \
+    ln -sf /home/hacking/toolkit/masscan/bin/masscan /usr/local/bin/masscan    
+
+# altdns
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/infosec-au/altdns.git && \
+    cd altdns && \
+    pip3 install -r requirements.txt && \
+    chmod +x setup.py && \
+    python setup.py install
+
+# teh_s3_bucketeers
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/tomdev/teh_s3_bucketeers.git && \
+    cd teh_s3_bucketeers && \
+    chmod +x bucketeer.sh && \
+    ln -sf /home/hacking/toolkit/teh_s3_bucketeers/bucketeer.sh /usr/local/bin/bucketeer
+
+# Recon-ng
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/lanmaster53/recon-ng.git && \
+    cd recon-ng && \
+    pip3 install -r REQUIREMENTS && \
+    chmod +x recon-ng && \
+    ln -sf /home/hacking/toolkit/recon-ng/recon-ng /usr/local/bin/recon-ng
+
+# XSStrike
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/s0md3v/XSStrike.git && \
+    cd XSStrike && \
+    pip3 install -r requirements.txt && \
+    chmod +x xsstrike.py && \
+    ln -sf /home/hacking/toolkit/XSStrike/xsstrike.py /usr/local/bin/xsstrike
+
+# theHarvester
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/AlexisAhmed/theHarvester.git && \
+    cd theHarvester && \
+    pip3 install -r requirements.txt && \
+    chmod +x theHarvester.py && \
+    ln -sf /home/hacking/toolkit/theHarvester/theHarvester.py /usr/local/bin/theharvester
+
+# CloudFlair
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/christophetd/CloudFlair.git && \
+    cd CloudFlair && \
+    pip3 install -r requirements.txt && \
+    chmod +x cloudflair.py && \
+    ln -sf /home/hacking/toolkit/CloudFlair/cloudflair.py /usr/local/bin/cloudflair
+
+# go
+RUN cd /opt && \
+    wget https://golang.org/dl/go1.15.4.linux-amd64.tar.gz && \
+    tar -xvf go1.15.4.linux-amd64.tar.gz && \
+    rm -rf /opt/go1.15.4.linux-amd64.tar.gz && \
+    mv go /usr/local 
+ENV GOROOT /usr/local/go
+ENV GOPATH /root/go
+ENV PATH ${GOPATH}/bin:${GOROOT}/bin:${PATH}
+
+# gobuster
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/OJ/gobuster.git && \
+    cd gobuster && \
+    go get && go install
+
+# virtual-host-discovery
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/AlexisAhmed/virtual-host-discovery.git && \
+    cd virtual-host-discovery && \
+    chmod +x scan.rb && \
+    ln -sf /home/hacking/toolkit/virtual-host-discovery/scan.rb /usr/local/bin/virtual-host-discovery
+
+# bucket_finder
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/AlexisAhmed/bucket_finder.git && \
+    cd bucket_finder && \
+    chmod +x bucket_finder.rb && \
+    ln -sf /home/hacking/toolkit/bucket_finder/bucket_finder.rb /usr/local/bin/bucket_finder
+
+# dirsearch
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/AlexisAhmed/dirsearch.git && \
+    cd dirsearch && \
+    chmod +x dirsearch.py && \
+    ln -sf /home/hacking/toolkit/dirsearch/dirsearch.py /usr/local/bin/dirsearch
+
+# s3recon
+RUN pip3 install --upgrade setuptools && \
+    pip3 install pyyaml pymongo requests s3recon
+
+# fierce
+RUN python3 -m pip install fierce
+
+# GoSpider
+RUN go get -u github.com/jaeles-project/gospider
+
+# hakrawler
+RUN go get github.com/hakluke/hakrawler
+
+# SubDomainzer
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/nsonaniya2010/SubDomainizer.git && \
+    cd SubDomainizer && \
+    pip3 install -r requirements.txt 
+
+# Amass
+RUN apt-get install -y amass
+
+# Github-subdomain
+RUN cd /home/hacking/toolkit && \
+    wget https://raw.githubusercontent.com/gwen001/github-search/master/github-subdomains.py
+
+# Shosubgo
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/incogbyte/shosubgo
+
+# shuffledns
+RUN GO111MODULE=on go get -u -v github.com/projectdiscovery/shuffledns/cmd/shuffledns
+
+# altdns
+RUN pip3 install py-altdns
+
+# dnmasscan
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/rastating/dnmasscan
+
+# Brutespray
+RUN apt-get -y install brutespray
+
+# SubOver
+RUN go get github.com/Ice3man543/SubOver
+
+# nuclei
+RUN GO111MODULE=on go get -u -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei
+
+# Asnlookup
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/yassineaboukir/Asnlookup && \
+    cd Asnlookup && \
+    pip3 install -r requirements.txt
+
+# Metabigor
+RUN go get -u github.com/j3ssie/metabigor
+
+# subfinder
+RUN cd /home/hacking/toolkit && \
+    git clone https://github.com/projectdiscovery/subfinder.git && \
+    cd subfinder/v2/cmd/subfinder && \
+    go build . && \
+    mv subfinder /usr/local/bin/
+
+# Adding Cheat
 RUN wget https://github.com/cheat/cheat/releases/download/3.10.1/cheat-linux-amd64.gz
 RUN gzip -d cheat-linux-amd64.gz && \
     mv cheat-linux-amd64 /usr/bin/cheat && \
